@@ -25,7 +25,7 @@ build_command = "{python} -m build".format(python=sys.executable)
 def sh(cmd):
     """Run system command in shell, raise SystemExit if it returns an error."""
     print("$", cmd)
-    stat = os.system(cmd)
+    stat = subprocess.call(cmd, shell=True, executable='/bin/zsh -i')
     #stat = 0  # Uncomment this and comment previous to run in debug mode
     if stat:
         raise SystemExit("Command %s failed with code: %s" % (cmd, stat))
